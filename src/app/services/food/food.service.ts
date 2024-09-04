@@ -1,5 +1,7 @@
+import { TagContentType } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Food } from 'src/app/shared/models/food';
+import { Tag } from '../../shared/models/tag'
 
 @Injectable({
   providedIn: 'root'
@@ -79,4 +81,38 @@ export class FoodService {
       },
     ]
   }
+
+  getAllFoodsByTag(tag:string):Food[]{
+return tag == "All" ? this.getAll() :
+this.getAll().filter(food =>
+ console.log(food.tags?.includes(tag)))
+ // food.tags?.includes(tag) );
+  }
+
+
+// return tag == "All" ? this.getAll() :
+// this.getAll().filter(food =>
+//  console.log(food.tags))
+//  // food.tags?.includes(tag) );
+
+
+getAllTag(): Tag[]{
+  return[
+    { name: 'All', count: 14 },
+    { name: 'FastFood', count: 4 },
+    { name: 'Pizza', count: 2 },
+    { name: 'Lunch', count: 3 },
+    { name: 'SlowFood', count: 2 },
+    { name: 'Hamburger', count: 1 },
+    { name: 'Fry', count: 1 },
+    { name: 'Soup', count: 1 },
+  ]
+
 }
+
+
+getFoodById(id:number): Food{
+  return this.getAll().find(food=> food.id == id)!;
+}
+}
+

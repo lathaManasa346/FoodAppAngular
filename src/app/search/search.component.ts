@@ -7,10 +7,12 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-searchTerm: String="";
+searchTerm: string="";
   constructor(private route: ActivatedRoute , private router: Router) { }
 
   ngOnInit(): void {
+  //   console.log("this.route", this.route);
+  //   console.log("this.route.params", this.route.params)
     this.route.params.subscribe(params =>{
 
       if(params['searchTerm']){
@@ -20,9 +22,11 @@ searchTerm: String="";
     })
   }
 
-  // search():void{
-  // this.
+  search():void{
+  if(this.searchTerm){
+    this.router.navigateByUrl('/search/' + this.searchTerm)
+  }
 
-  // }
+  }
 
 }
